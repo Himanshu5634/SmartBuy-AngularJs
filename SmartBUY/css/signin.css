@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box  ;
+}
+
+.container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box{
+    width: 500px;
+    height: 500px;
+    /* border: 1px solid black; */
+}
+.logo{
+    text-align: center;
+}
+.logo img{
+    width: 150px;
+}
+
+.sign-in{
+    text-align: center;
+    font-size: 1.7rem;
+}
+
+.input{
+    
+    text-align: center;
+    width: 50%;
+    margin: 1rem 25% 0 25%;
+}
+
+input{
+    width: 100%;
+    height: 35px;
+    padding: 5px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    background: transparent;
+    outline: none;
+    border: none;
+    border: 1px solid black;
+    border-radius: 2px;
+}
+
+button{
+    width: 100%;
+    height: 35px;
+    font-size: 1.2rem;
+    background-color: #0d6efd;
+    border: none;
+    border-radius: 2px;
+    color: white;
+}

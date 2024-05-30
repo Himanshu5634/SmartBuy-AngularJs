@@ -1,0 +1,118 @@
+<div class="container pt-5 mb-5">
+  <h3 class="d-flex mb-3">
+    <span class="me-auto">Phones</span>
+    <a href="#!/phones/new" class="btn btn-sm btn-primary">Add New phone</a>
+  </h3>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="input-group input-group-sm mb-3"> 
+        <span class="input-group-text">Filter: </span>
+        <div class="btn-group btn-group-sm" role="group">
+          <input type="radio" class="btn-check" name="filter" id="filter1" value="title" ng-model="searchType"
+            checked />
+          <label class="btn btn-outline-primary" for="filter1">Title</label>
+          <input type="radio" class="btn-check" name="filter" id="filter2" value="launchOn" ng-model="searchType"
+            checked />
+          <label class="btn btn-outline-primary" for="filter2">launchOn </label>
+          <input type="radio" class="btn-check" name="filter" id="filter3" value="category" ng-model="searchType" />
+          <label class="btn btn-outline-primary" for="filter3">Category</label>
+        </div>
+        <input type="search" class="form-control" id="filter-text" vaule="" ng-model="searchText" />
+      </div>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Image</th>
+          <th ng-click="customOrderBy('title')" ng-class="{activeHeader:orderByField==='title', reverse:reverseOrder}">
+            Title
+          </th>
+          <th ng-click="customOrderBy('published')"
+            ng-class="{activeHeader:orderByField==='published', reverse:reverseOrder}">
+            Launch On
+          </th>
+          <th>
+            category
+          </th>
+          <!-- <th ng-click="customOrderBy('category')"
+            ng-class="{activeHeader:orderByField==='category', reverse:reverseOrder}">
+            Category
+          </th> -->
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-show="!phones">
+          <td colspan="6">No records found...</td>
+        </tr>
+        <tr ng-repeat="phone in phones | searchFilter:searchType:searchText">
+          <td>{{$index+1}}</td>
+          <td>
+            <img class="img-thumbnail" src="{{phone.img}}" alt="" width="100" />
+          </td>
+          <td>{{phone.title}}</td>
+          <td>{{phone.launchOn}}</td>
+          <td>{{phone.catagories}}</td>
+          <td width="150px">
+            <div class="btn-group btn-group-sm">
+              <a href="#!/phones/details/{{phone.id}}" class="btn btn-sm btn-success" title="Details">
+               Details
+              </a>
+              <a href="#!/phones/edit/{{phone.id}}" class="btn btn-sm btn-warning" title="Edit">
+             Edit
+              </a>
+              <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                data-bs-target="#deletePhoneModal" title="Delete" ng-click="selectPhone(phone.id)">
+               Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="deletePhoneModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Phone</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form>
+        <div class="modal-body">
+          <p class="article-title">Title: {{selectedArticle.title}}</p>
+          <p>Are you sure! you want to delete this phone?</p>
+          <input type="hidden" class="form-control" id="aid" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="submit" class="btn btn-danger" ng-click="deletePhone()" data-bs-dismiss="modal">
+            Delete
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  const deletePhoneModal = document.getElementById("deletePhoneModal");
+  if (deletePhoneModal) {
+    deletePhoneModal.addEventListener("show.bs.modal", (event) => {
+      const button = event.relatedTarget;
+      const aid = button.getAttribute("data-bs-aid");
+      const aIdInput = deletePhoneModal.querySelector(".modal-body #aid");
+      aIdInput.value = aid;
+      const title = button.getAttribute("data-bs-title");
+      const aTitleInput = deletePhoneModal.querySelector(
+        ".modal-body .article-title"
+      );
+      aTitleInput.innerHTML = `Title: ${title}`;
+    });
+  }
+</script>

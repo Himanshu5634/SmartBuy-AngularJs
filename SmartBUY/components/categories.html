@@ -1,0 +1,161 @@
+<div class="container pt-5 mb-5">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <div class="d-flex justify-content-between align-items-center">
+            <h3 class="m-0">Categories</h3>
+            <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#addNewCatModal">Add
+              New</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="input-group input-group-sm mb-3">
+            <p class="input-group-text bg-light">Filter:</p>
+            <div class="btn-group pt-1 pb-1" role="group">
+              <input type="radio" class="btn-check" name="filter" id="filter1" value="title" ng-model="searchType">
+              <label class="btn btn-outline-secondary" for="filter1">Title</label>
+              <input type="radio" class="btn-check" name="filter" id="filter2" value="date" ng-model="searchType">
+              <label class="btn btn-outline-secondary" for="filter2">Created</label>
+            </div>
+            <input type="search" class="form-control " id="filter-text" placeholder="Search..." ng-model="searchText">
+          </div>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead class="bg-light">
+                <tr align="center">
+                  <th>#</th>
+                  <th ng-click="customOrderBy('title')"
+                    ng-class="{activeHeader:orderByField==='title', reverse:reverseOrder}">
+                    Title
+                  </th>
+                  <th ng-click="customOrderBy('published')"
+                    ng-class="{activeHeader:orderByField==='published', reverse:reverseOrder}">
+                    Created
+                  </th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-show="!categories">
+                  <td colspan="4">No records found...</td>
+                </tr>
+                <tr
+                  ng-repeat="category in categories | orderBy:orderByField:reverseOrder | searchFilter:searchType:searchText"
+                  align="center">
+                  <td>{{$index+1}}</td>
+                  <td>{{category.title}}</td>
+                  <td>{{category.date}}</td>
+
+                  <td>
+                    <div class="btn-group" role="group">
+                      <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editCatModal"
+                        title="Edit" ng-click="selectCategory(category.id)">
+                        Edit
+                      </button>
+                      <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCatModal"
+                        title="Delete" ng-click="selectCategory(category.id)">
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="addNewCatModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form name="frmAddCategory" ng-submit="addNewCategory()">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="title" class="col-form-label">Title:<span class="text-red">*</span></label>
+            <input type="text" id="title" name="title"
+              ng-class="{'is-invalid': frmAddCategory.title.$touched && frmAddCategory.title.$invalid }"
+              ng-model="newCategory.title" ng-required="true" />
+            <div ng-show="frmAddCategory.title.$touched && frmAddCategory.title.$error.required" style="color:red">
+              Title is required.
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary" ng-disabled="frmAddCategory.$invalid">
+            Save changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editCatModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form name="frmEditCategory" ng-submit="updateCategory()">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="title" class="col-form-label">Title:</label>
+            <input type="text" id="title" ng-model="selectedCategory.title" name="title"
+              ng-class="{'is-invalid': frmEditCategory.title.$touched && frmEditCategory.title.$invalid }" required />
+            <div ng-show="frmEditCategory.title.$touched && frmEditCategory.title.$error.required" style="color:red">
+              Title is required.
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary" ng-disabled="frmEditCategory.$invalid">
+            Save changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="deleteCatModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Are you sure! you want to delete '{{selectedCategory.title}}'
+          category?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button class="btn btn-danger" ng-click="deleteCategory()" data-bs-dismiss="modal">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

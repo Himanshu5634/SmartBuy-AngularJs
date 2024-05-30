@@ -1,0 +1,12 @@
+[
+    {
+        "id":1,
+        "title":"Android Phones",
+        "date" : "April 01, 2024"
+    },
+    {
+        "id":2,
+        "title":"IOS Phones",
+        "date" : "April 03, 2024"
+    }
+]

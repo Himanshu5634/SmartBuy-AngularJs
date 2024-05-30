@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="add-new.css">
+</head>
+<body>
+  <form action=" " ng-submit="addPhone()">
+    <div class="add-new-phone">
+      <div class="add">
+          <p>Add New Phone</p>
+      </div>
+      <div class="phone-data">
+          <div class="add-phone-data">
+              <p>Add Your Phone Data</p>
+          </div>
+          <div class="data">
+              <div class="input-row">
+                <div class="input-group">
+                  <label for="">Brand Name:</label>
+                  <input type="text" placeholder="brand Name" ng-model="brandName">
+                </div>
+                <div class="input-group">
+                  <label for="">launch Dtae:</label>
+                  <input type="date" placeholder="date" ng-model="launchDate">
+                </div>
+                <div class="input-group">
+                  <label for="">Phone image:</label>
+                  <input type="file" name="" id="" class="file" ng-model="image" accept="image/*">
+                </div>
+              </div>
+              <div class="input-row">
+                  <div class="input-group">
+                    <label for="">catagory</label>
+                    <input type="text" placeholder="catagory" ng-model="catagory" >
+                  </div>
+                  <div class="input-group">
+                    <label for="">Price(₹)</label>
+                      <input type="text" name="" id="" placeholder="Money">
+                  </div>
+                  <div class="input-group">
+                      <label for="">Model Name</label>
+                        <input type="text" name="" id="" placeholder="Name">
+                    </div>
+                </div>
+                <div class="input-row">
+                  <div class="input-group">
+                    <label for="">RAM</label>
+                    <input type="text" placeholder="x GB">
+                  </div>
+                  <div class="input-group">
+                    <label for="">Storage(ROM)</label>
+                      <input type="text" name="" id="" placeholder="x GB">
+                  </div>
+                  <div class="input-group">
+                      <label for="">Weighte</label>
+                        <input type="text" name="" id="" placeholder="Weighte">
+                    </div>
+                </div>
+                <div class="input-row">
+                  <div class="input-group">
+                    <label for="">Camera(Main)</label>
+                    <input type="text" placeholder="x MP">
+                  </div>
+                  <div class="input-group">
+                    <label for="">Camera(Wide Angle)</label>
+                      <input type="text" name="" id="" placeholder="X mp">
+                  </div>
+                  <div class="input-group">
+                      <label for="">Battey(mAh)</label>
+                        <input type="text" name="" id="" placeholder="Name">
+                    </div>
+                </div>
+                <button class="cancel">Cancel</button>
+                <button  type="submit" class="Save-Change">Save Change</button>
+          </div>
+      </div>
+  </div>
+   </form>
+</body>
+</html>

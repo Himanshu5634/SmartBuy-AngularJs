@@ -1,0 +1,79 @@
+<div class="container pt-5 mb-5">
+  <h3 class="mb-3">Update Phone</h3>
+
+  <div class="row mb-3">
+    <div class="col-md-8">
+      <form action="#!/phones" ng-submit="submitForm()">
+        <input type="hidden" id="id" ng-model="phones[phoneId-1].id" />
+        <div class="card">
+          <div class="card-header">Update Basic Details</div>
+          <div class="card-body">
+            <div class="mb-3">
+              <label for="title" class="col-form-label">Title:</label>
+              <input type="text" class="form-control" id="title" ng-model="phones[phoneId-1].title" />
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-8">
+                <label for="category" class="form-label">Category</label>
+                <select class="form-select" id="category" ng-model="phones[phoneId-1].catagories">
+                  <option value="Android phone">Android phone</option>
+                  <option value="IOS phone">IOS phone</option>
+                </select>
+              </div>
+              
+              <div class="col-md-4">
+                <label for="pdate" class="form-label">Price</label>
+                <input class="form-control" type="text" id="pdate" ng-model="phones[phoneId-1].price" />
+              </div>
+              <div class="col-md-4">
+                <label for="pdate" class="form-label">Launch Date</label>
+                <input class="form-control" type="date" id="pdate" ng-model="phones[phoneId-1].launchOn" />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="scontent" class="col-form-label">Short Content:</label>
+              <textarea name="scontent" id="scontent" class="form-control" rows="5">
+{{phones[phoneId-1].shortContent}}
+              </textarea>
+            </div>
+            <button type="submit" class="btn btn-sm btn-secondary">
+              Save changes
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">Update Feature Image</div>
+        <img src="{{phones[phoneId-1].img}}" class="card-img-bottom" alt="..." />
+        <div class="card-body">
+          <form action="#!/phones" ng-submit="submitForm()">
+            <div class="mb-3">
+              <label for="fimage" class="form-label">Feature Image</label>
+              <input class="form-control" type="file" id="fimage" />
+            </div>
+            <button type="submit" class="btn btn-sm btn-secondary">
+              Save changes
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <form action="#!/phones" ng-submit="submitForm()">
+      <div class="card-header">Update Full Content</div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label for="fcontent" class="col-form-label">Full Content:</label>
+          <ng-quill-editor id="fcontent" name="fcontent" ng-model="phones[phoneId-1].content"></ng-quill-editor>
+        </div>
+        <button type="submit" class="btn btn-sm btn-secondary">
+          Save changes
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,113 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.add-new-phone{
+    padding: 2rem
+}
+
+.add-new-phone .add{
+    width: 100%;
+    margin-bottom: 1.2rem;
+   
+
+}
+
+.add-new-phone .add p{
+    font-size: 1.7rem;
+}
+
+.add-new-phone .phone-data .add-phone-data {
+    width: 100%;
+    background-color: #cecdcd;
+    padding: 0.8rem;
+    border: 1px solid black;
+    border-bottom: none ;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.add-new-phone .phone-data .add-phone-data p{
+    font-size: 1.2rem;
+}
+
+.data{
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid black;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.input-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.input-row .input-group {
+    flex-basis: 100%;
+    margin-right: 3rem;
+}
+
+.input-row .input-group label{
+    font-size: 1.2rem;
+}
+
+input {
+    padding: 10px;
+    width: 100%;
+    height: 35px;
+    outline: none;
+ font-size: 1rem;
+ border: none;
+border: 1px solid black;
+ margin-top: 0.5rem;
+ border-radius: 5px;
+}
+
+select{
+    
+    width: 100%;
+    height: 35px;
+    outline: none;
+ font-size: 1rem;
+ border: none;
+border: 1px solid black;
+ margin-top: 0.5rem;
+ border-radius: 5px;
+}
+
+ng-quill-editor{
+    width: 100%;
+    font-size: 1rem;
+ border: none;
+border: 1px solid black;
+border-radius: 5px;
+margin-top: 0.5rem;
+}
+
+.file{
+    border: none;
+}
+
+.cancel{
+    width: 6%;
+    height: 35px;
+    background-color: gray;
+    border: none;
+    color: white;
+    border-radius: 5px;
+}
+
+.Save-Change{
+    width: 8%;
+    height: 35px;
+    background-color: #1a8554;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    
+}
+
